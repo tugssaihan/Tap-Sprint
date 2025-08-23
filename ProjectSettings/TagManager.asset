@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Finish Line
+  - Slow
   layers:
   - Default
   - TransparentFX
