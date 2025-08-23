@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] float currentSpeed = 0f;
-    [SerializeField] float speedPerClick = 0.5f;
+    [SerializeField] float speedPerClick = 1f;
 
     InputActions inputActions;
 
@@ -24,10 +24,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        // Debug.Log("Player current speed = " + currentSpeed);
         // increase speed
         if (inputActions.Player.Move.WasPressedThisFrame())
         {
-            Debug.Log("Clicked!");
             currentSpeed += speedPerClick;
         }
 

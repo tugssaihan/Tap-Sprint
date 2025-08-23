@@ -1,26 +1,10 @@
 using UnityEngine;
 
-public class AnimationController : MonoBehaviour
+public class EnemyAnimationController : MonoBehaviour
 {
     Animator animator;
-    InputActions inputActions;
-    bool hasFinished = false;
     bool isRunning = false;
-
-    void OnEnable()
-    {
-        inputActions.Enable();
-    }
-
-    void OnDisable()
-    {
-        inputActions.Disable();
-    }
-
-    void Awake()
-    {
-        inputActions = new InputActions();
-    }
+    bool hasFinished = false;
 
     void Start()
     {
@@ -29,7 +13,7 @@ public class AnimationController : MonoBehaviour
 
     void Update()
     {
-        if (inputActions.Player.Move.IsPressed() && !hasFinished && !isRunning)
+        if (!isRunning && !hasFinished)
         {
             isRunning = true;
             animator.SetBool("isRunning", true);
