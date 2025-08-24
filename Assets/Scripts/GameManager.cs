@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text distanceText;
     [SerializeField] TMP_Text timeText;
     [SerializeField] TMP_Text instructionText;
+    [SerializeField] TMP_Text logoText;
     [SerializeField] GameObject finishLine;
     [SerializeField] TMP_Text[] placementTexts;
 
@@ -41,6 +42,7 @@ public class GameManager : MonoBehaviour
         startPanel.SetActive(true);
         countDownPanel.SetActive(false);
         scoreboardPanel.SetActive(false);
+        logoText.gameObject.SetActive(true);
         instructionText.gameObject.SetActive(false);
 
         startTime = Time.time;
@@ -65,6 +67,8 @@ public class GameManager : MonoBehaviour
 
         playerMovement.SetInputActions(inputActions);
         countDownPanel.SetActive(false);
+        logoText.gameObject.SetActive(false);
+
         Time.timeScale = 1f;
         inputActions.Enable();
         gameStarted = true;
@@ -121,6 +125,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+    
     public void GameOver()
     {
         HideTexts();

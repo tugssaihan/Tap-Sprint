@@ -115,6 +115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentSpeed: 0
   speedPerClick: 0.2
+  playerFinished: 0
 --- !u!54 &2118450668174504878
 Rigidbody:
   m_ObjectHideFlags: 0
