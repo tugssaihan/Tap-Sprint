@@ -59,6 +59,9 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (other.CompareTag("Finish Line"))
         {
+            AudioManager.Instance.PlayCheering();
+            AudioManager.Instance.PlayRunning(false);
+            
             playerFinished = true;
             inputActions.Disable();
             gameManager.AddResults(gameObject.name, gameManager.raceTime);

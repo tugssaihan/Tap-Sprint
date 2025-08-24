@@ -1,16 +1,41 @@
+using System.Threading;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static AudioManager Instance;
+
+    public AudioSource sfxSource;
+
+    public AudioClip runningSFX;
+    public AudioClip cheerSFX;
+    public AudioClip countDownSFX;
+
+    void Awake()
     {
-        
+        if (Instance == null)
+        {
+            Instance = this;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayRunning(bool play)
     {
-        
+        if (play)
+        {
+            if (!sfxSource.isPlaying)
+            {
+                sfxSource.clip = runningSFX;
+                sfxSource.loop = true;
+                sfxSource.Play();
+            }
+        }
+        else
+        {
+            sfxSource.Stop();
+        }
     }
+
+    public void PlayCheering() => sfxSource.PlayOneShot(cheerSFX);
+    public void PlayCountDown() => sfxSource.PlayOneShot(countDownSFX);
 }

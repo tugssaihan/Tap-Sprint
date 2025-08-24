@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator StartCountDown()
     {
+        AudioManager.Instance.PlayCountDown();
         int count = 3;
         while (count > 0)
         {
@@ -71,8 +72,10 @@ public class GameManager : MonoBehaviour
     {
         if (gameStarted && !playerMovement.playerFinished)
         {
+            AudioManager.Instance.PlayRunning(true);
             ChangeTexts();
         }
+        
         if (finishedRacers >= 7)
         {
             GameOver();

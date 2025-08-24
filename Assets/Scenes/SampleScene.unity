@@ -3587,6 +3587,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d937b18861b0dfc4cb4119960953a45e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxSource: {fileID: 1506636489}
+  runningSFX: {fileID: 8300000, guid: c3879897ccf20c04298d34a749f882e0, type: 3}
+  cheerSFX: {fileID: 8300000, guid: 80122ad1747a020468ab67f530ff57a6, type: 3}
+  countDownSFX: {fileID: 8300000, guid: 1ffeeaba66d675f498f2b07c7e94b1eb, type: 3}
 --- !u!82 &1506636489
 AudioSource:
   m_ObjectHideFlags: 0
