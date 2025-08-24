@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] float currentSpeed = 0f;
+    [SerializeField] public float currentSpeed = 0f;
     [SerializeField] float speedPerClick = 0.2f;
 
     InputActions inputActions;
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         // slow down after triggering deaccelerateLine
         else
         {
-            currentSpeed = Mathf.Clamp(currentSpeed, 0, 20);
+            currentSpeed = Mathf.Clamp(currentSpeed, 0, 25);
         }
 
         transform.Translate(Vector3.forward * currentSpeed * Time.deltaTime);

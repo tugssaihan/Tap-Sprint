@@ -6,14 +6,16 @@ public class AIMovement : MonoBehaviour
     [SerializeField] float aiCurrentSpeed = 0f;
     float aiMoveSpeed;
     float timer = 0f;
-    float waitTime = 0.2f;
+    float waitTime = 0.15f;
     bool deaccelerateLine = false;
     bool finished = false;
-    float decreaseTime = 1f;
+    float decreaseTime = 0.5f;
+    float time;
 
     void Start()
     {
-        aiMoveSpeed = UnityEngine.Random.Range(0.5f, 1.2f);
+        aiMoveSpeed = UnityEngine.Random.Range(0.5f, 2f);
+        Debug.Log($"{gameObject.name}: {aiMoveSpeed}");
     }
 
     void Update()
@@ -23,7 +25,6 @@ public class AIMovement : MonoBehaviour
 
     void MoveAI()
     {
-        Debug.Log("ai current speed: " + aiCurrentSpeed);
         timer += Time.deltaTime;
         if (timer >= waitTime && !finished)
         {
@@ -32,7 +33,7 @@ public class AIMovement : MonoBehaviour
         }
 
         // decrease speed
-        if (aiCurrentSpeed >= 20 || finished)
+        if (finished)
         {
             aiCurrentSpeed -= decreaseTime * Time.deltaTime;
         }

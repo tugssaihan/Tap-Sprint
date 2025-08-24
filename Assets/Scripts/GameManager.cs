@@ -7,9 +7,17 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject startPanel;
     [SerializeField] GameObject countDownPanel;
+    [SerializeField] GameObject finishLine;
     [SerializeField] TMP_Text countDownText;
+    [SerializeField] TMP_Text speedText;
+    [SerializeField] TMP_Text distanceText;
+    [SerializeField] TMP_Text timeText;
+
     PlayerMovement playerMovement;
     InputActions inputActions;
+    bool gameStarted = false;
+    float startTime;
+    float raceTime;
 
     void Awake()
     {
@@ -23,6 +31,8 @@ public class GameManager : MonoBehaviour
         inputActions.Disable();
         startPanel.SetActive(true);
         countDownPanel.SetActive(false);
+
+        startTime = Time.time;
     }
 
     IEnumerator StartCountDown()
@@ -43,6 +53,26 @@ public class GameManager : MonoBehaviour
         countDownPanel.SetActive(false);
         Time.timeScale = 1f;
         inputActions.Enable();
+        gameStarted = true;
+    }
+
+    void Update()
+    {
+        if (gameStarted)
+        {
+            ShowTexts();
+        }
+    }
+
+    public void ShowTexts()
+    {
+        speedText.text = "Speed: " + playerMovement.currentSpeed.ToString("F2");
+
+        float distanceLeft = (finishLine.transform.position.z - playerMovement.gameObject.transform.position.z - 41) / 2;
+        distanceText.text = "Distance: " + Mathf.RoundToInt(distanceLeft);
+
+        raceTime = Time.time - startTime;
+        timeText.text = "Time: " + raceTime.ToString("F2");
     }
 
     public void StartGame()
