@@ -59,12 +59,15 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (other.CompareTag("Finish Line"))
         {
-            AudioManager.Instance.PlayCheering();
-            AudioManager.Instance.PlayRunning(false);
-            
+            gameManager.AddResults(gameObject.name, gameManager.raceTime);
             playerFinished = true;
             inputActions.Disable();
-            gameManager.AddResults(gameObject.name, gameManager.raceTime);
+
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlayCheering();
+            if (AudioManager.Instance != null)
+                AudioManager.Instance.PlayRunning(false);
+
             gameManager.finishedRacers += 1;
             currentSpeed = 18f;
         }

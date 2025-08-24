@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AIMovement : MonoBehaviour
 {
-    [SerializeField] float aiCurrentSpeed = 0f;
+    [SerializeField] public float aiCurrentSpeed = 0f;
 
     GameManager gameManager;
     float aiMoveSpeed;

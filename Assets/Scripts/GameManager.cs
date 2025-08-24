@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] TMP_Text speedText;
     [SerializeField] TMP_Text distanceText;
     [SerializeField] TMP_Text timeText;
+    [SerializeField] TMP_Text instructionText;
     [SerializeField] GameObject finishLine;
     [SerializeField] TMP_Text[] placementTexts;
 
@@ -39,6 +41,7 @@ public class GameManager : MonoBehaviour
         startPanel.SetActive(true);
         countDownPanel.SetActive(false);
         scoreboardPanel.SetActive(false);
+        instructionText.gameObject.SetActive(false);
 
         startTime = Time.time;
     }
@@ -75,11 +78,11 @@ public class GameManager : MonoBehaviour
             AudioManager.Instance.PlayRunning(true);
             ChangeTexts();
         }
-        
+
         if (finishedRacers >= 7)
-        {
-            GameOver();
-        }
+            {
+                GameOver();
+            }
     }
 
     private void ChangeTexts()
@@ -103,6 +106,7 @@ public class GameManager : MonoBehaviour
         speedText.gameObject.SetActive(true);
         distanceText.gameObject.SetActive(true);
         timeText.gameObject.SetActive(true);
+        instructionText.gameObject.SetActive(true);
     }
 
     public void StartGame()
@@ -112,10 +116,16 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StartCountDown());
     }
 
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     public void GameOver()
     {
         HideTexts();
         ShowResults();
+        instructionText.gameObject.SetActive(false);
         scoreboardPanel.SetActive(true);
     }
 
@@ -125,7 +135,7 @@ public class GameManager : MonoBehaviour
         foreach (KeyValuePair<string, string> result in results)
         {
             placementTexts[index - 1].text = $"{index}. {result.Key}: {result.Value}";
-            Debug.Log($"{index++}. {result.Key}: {result.Value}");
+            index++;
         }
     }
 
