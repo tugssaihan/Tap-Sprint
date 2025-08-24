@@ -67,7 +67,6 @@ public class GameManager : MonoBehaviour
 
         playerMovement.SetInputActions(inputActions);
         countDownPanel.SetActive(false);
-        logoText.gameObject.SetActive(false);
 
         Time.timeScale = 1f;
         inputActions.Enable();
@@ -116,6 +115,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         startPanel.SetActive(false);
+        logoText.gameObject.SetActive(false);
         countDownPanel.SetActive(true);
         StartCoroutine(StartCountDown());
     }
