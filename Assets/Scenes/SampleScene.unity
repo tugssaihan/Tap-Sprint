@@ -1634,7 +1634,7 @@ MonoBehaviour:
   distanceText: {fileID: 60144508}
   timeText: {fileID: 1434968991}
   instructionText: {fileID: 370508694}
-  logoText: {fileID: 0}
+  logoText: {fileID: 1605693218}
   finishLine: {fileID: 1875033324}
   placementTexts:
   - {fileID: 1339040847}
