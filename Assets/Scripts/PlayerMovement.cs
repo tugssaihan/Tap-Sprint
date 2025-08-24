@@ -6,12 +6,19 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speedPerClick = 0.2f;
 
     InputActions inputActions;
+    GameManager gameManager;
     float decreaseSpeed = 0.1f;
     bool deaccelerateLine = false;
+    public bool playerFinished = false;
 
     public void SetInputActions(InputActions actions)
     {
         inputActions = actions;
+    }
+
+    void Awake()
+    {
+        gameManager = FindFirstObjectByType<GameManager>();
     }
 
     void Update()
@@ -21,7 +28,6 @@ public class PlayerMovement : MonoBehaviour
         // increase speed
         if (inputActions.Player.Move.IsPressed())
         {
-            Debug.Log("pressing");
             currentSpeed += speedPerClick;
         }
         // decrease speed
@@ -48,12 +54,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (other.CompareTag("Slow"))
         {
-            Debug.Log("slowing down");
             deaccelerateLine = true;
             speedPerClick /= 2;
         }
         else if (other.CompareTag("Finish Line"))
         {
+            playerFinished = true;
+            inputActions.Disable();
+            gameManager.AddResults(gameObject.name, gameManager.raceTime);
+            gameManager.finishedRacers += 1;
             currentSpeed = 18f;
         }
     }
