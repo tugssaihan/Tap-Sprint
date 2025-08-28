@@ -83,9 +83,9 @@ public class GameManager : MonoBehaviour
         }
 
         if (finishedRacers >= 7)
-            {
-                GameOver();
-            }
+        {
+            GameOver();
+        }
     }
 
     private void ChangeTexts()
